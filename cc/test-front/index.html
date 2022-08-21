@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- link the classes and other style codes to style.css -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- for content and the color of it's background -->
+    <div class="content">
+        <!-- use parent for flex -->
+        <div class="parent">
+            <!-- the laft side part for getting name and add buttons and lables and paragrafs -->
+            <div class="left_div">
+                <p class="title">New note</p>
+                <!-- make a form for predict part -->
+                <form id="form_predict" name="myForm">
+                    <!-- for making the row to flex for this block -->
+                    <div>
+                        <textarea id="story" name="story" rows="15" cols="75" placeholder="this is a test note"
+                            style="background-color:rgb(255, 224, 229);"></textarea>
+                    </div>
+
+                    <!-- add the submit button and make it do the sendToBaseUrl that define in js 
+            whenever the user click on submit button it runs-->
+                    <div>
+                        <input id = "submit_btn" class="submit_btn" type="submit" value="Create note" onclick="sendToBaseUrl()" />
+                        <!-- add the save button and make it do the save_name that define in js 
+            whenever the user click on save button it runs-->
+                        <!-- <button class="save_btn">Show options</button> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- add the script for function call externally in an javascript file -->
+    <script src="myscripts.js"></script>
+    </script>
+</body>
+
+</html>

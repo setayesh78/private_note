@@ -1,0 +1,112 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(62, 62, 62);
+  }
+
+/* make the content display in the center position 
+and also add border and some padiing
+also make the background transparent by rgba and the last parameter is for the 
+transparency scale*/
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.6); /*make content background transparent*/
+  padding: 30px;
+  border-radius: 25px;
+}
+
+/* make the display flex for all children */
+.parent {
+  display: flex;
+}
+
+/* # is beacuse of id (calsses starts with dot)
+make the predict form part fle and add padding for some good spaces
+the padding numbers are clockwise and the first one is for top */
+#form_predict {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 10px 0px;
+}
+
+/* for  "Mr. or Ms.?"  title to make it bold and increase the font size
+also add a bottom margin for some space */
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* flex the display and marginfor some good spaces
+the padding numbers are clockwise and the first one is for top */
+.flexRow_div {
+  display: flex;
+  margin: 10px 20px 10px 0px;
+}
+
+
+/* make the submit button be in good and regular size */
+.submit_btn{
+    color: white;
+    width:200px;
+    margin: 10px 20px 10px 0px;
+    background-color:red;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* make the save button be in good and regular size
+also add a 10 pixel space from the top */
+.save_btn{
+  background-color: rgb(208, 155, 56);
+  width:100px;
+  margin: 10px 30px 10px 0px;
+  padding: 10px;
+  border-radius: 10px;
+  float: right;
+}
+
+/* flex the left side of content by the flex direction of column */
+.left_div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* flex the right side of content by the flex direction of column also add some 
+margin spaces and fix the width of the right side for text to show good in a line */
+.right_div {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  margin: 0px 20px 20px 30px;
+}
+
+.name {
+  background-color: rgb(242, 195, 109); /*make content background transparent*/
+  margin: 0px 15px 0px 0px;
+  height: 50px;
+  width: 500px;
+}
+
+.self-destruct{
+  background-color: rgb(208, 155, 56); /*make content background transparent*/
+  margin: 0px 5px 10px 0px;
+  height: 50px;
+  width: 500px;
+}
+
+.email_btn{
+  width:200px;
+  margin: 10px 20px 10px 0px;
+  background-color:rgb(210, 210, 210);
+  padding: 10px;
+  border-radius: 10px;
+}
+

@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.back.fullnameOverride }}
+  labels:
+    service: {{ .Values.back.fullnameOverride }}
+spec:
+  replicas: {{ .Values.back.replicaCount }}
+  selector:
+    matchLabels:
+      service: {{ .Values.back.fullnameOverride }}
+  template:
+    metadata:
+      labels:
+        service: {{ .Values.back.fullnameOverride }}
+    spec:
+      containers:
+      - name: {{ .Values.back.fullnameOverride }}
+        image: {{ .Values.back.image.repository }}
+        tag: {{ .Values.back.image.tag }}
+        imagePullPolicy: {{ .Values.back.image.pullPolicy }}
+        envFrom:
+        - configMapRef:
+                name: {{ .Values.back.fullnameOverride }}-cm
+        ports:
+        - containerPort: {{ .Values.service.port }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Values.back.fullnameOverride }}-cm
+data:
+  DEFAULT_TIMEDELTA : [0, 0, 1]
+  RUNSERVER_PORT : "{{ .Values.service.port }}"
+  DATABASE_USERNAME : "{{ .Values.back.env.databaseAdmin }}"
+  DATABASE_PASSWORD : "{{ .Values.back.env.databasePassword }}"
+  DATABASE_URL : "{{ .Values.back.env.databaseURL }}"
+  DATABASE_NAME : "{{ .Values.back.env.databaseName }}"
+  DATABASE_PORT : "{{ .Values.back.env.databasePort }}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.back.fullnameOverride }}
+  labels:
+    service: {{ .Values.back.fullnameOverride }}
+spec:
+  ports:
+  - port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.port }}
+    protocol: TCP
+    nodePort: {{ .Values.service.nodePort }}
+  type: {{ .Values.service.type }}
+  selector:
+    service: {{ .Values.back.fullnameOverride }}

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+  labels:
+    service: django
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: django
+  template:
+    metadata:
+      labels:
+        service: django
+    spec:
+      containers:
+      - name: django
+        image: nargessalehi98/weather-srv:0.0.2
+        envFrom:
+        - configMapRef:
+            name: weather-cm
+        ports:
+        - containerPort: 8000
+

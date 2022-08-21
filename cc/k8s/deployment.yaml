@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back
+  labels:
+    service: back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: back
+  template:
+    metadata:
+      labels:
+        service: back
+    spec:
+      containers:
+      - name: back
+        image: nargessalehi98/private-note:0.0.4
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+                name: privet-note
+        ports:
+        - containerPort: 8000
+

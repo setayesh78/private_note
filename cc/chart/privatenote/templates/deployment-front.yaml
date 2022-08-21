@@ -1,0 +1,39 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: {{ .Values.front.fullnameOverride }}
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Values.front.fullnameOverride }}
+  replicas: {{ .Values.front.replicaCount }}
+  template: 
+    metadata:
+      labels:
+        app: {{ .Values.front.fullnameOverride }}
+    spec:
+      containers:
+      - name: {{ .Values.front.fullnameOverride }}
+        image: {{ .Values.front.image.repository }}
+        tag: {{ .Values.front.image.tag }}
+        ports:
+        - containerPort: {{ .Values.front.service.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.front.fullnameOverride }}
+  labels:
+    app: {{ .Values.front.fullnameOverride }}
+spec:
+  ports:
+  - name: http
+    port: {{ .Values.front.service.port }}
+    protocol: TCP
+    targetPort: {{ .Values.front.service.port }}
+    NodePort: {{ .Values.front.service.nodePort }}
+  selector:
+    app: {{ .Values.front.fullnameOverride }}
+  type: {{ .Values.front.service.type }}

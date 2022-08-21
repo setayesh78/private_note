@@ -1,0 +1,12 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: privet-note
+data:
+  DEFAULT_TIMEDELTA : '[0, 0, 1]'
+  RUNSERVER_PORT : '8000'
+  DATABASE_USERNAME : 'admin'
+  DATABASE_PASSWORD : 'admin'
+  DATABASE_URL : '192.168.99.106'
+  DATABASE_NAME : 'privetNote'
+  DATABASE_PORT : '27017'

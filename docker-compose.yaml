@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+
+  config:
+    image: np:1.0.11
+    ports:
+      - 8000:8000
+    depends_on:
+      - mongo
+      - front
+
+  front:
+    image: front:1.0.2
+    ports:
+      - 8080:80
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+
+
+
+

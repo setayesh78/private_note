@@ -1,0 +1,86 @@
+back:
+  replicaCount: 2
+
+  image:
+    repository: nargessalehi98/private-note
+    pullPolicy: IfNotPresent
+    tag: ""
+  nameOverride: ""
+  fullnameOverride: "back"
+
+  podAnnotations: {}
+
+  podSecurityContext: {}
+
+  securityContext: {}
+  service:
+    type: NodePort
+    port: 8000
+    nodePort: 31000
+
+  env:
+    databasePort: 31001
+    databaseName: privetNote
+    databaseURL: 192.168.99.107
+    databaseAdmin: admin
+    databasePassword: admin
+  resources:
+    limit:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 300m
+      memory: 512Mi
+
+  autoscaling:
+    enabled: enable
+    minReplicas: 2
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 80
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+
+front:
+  replicaCount: 1
+
+  image:
+    repository: nargessalehi98/private-note-nginx
+    pullPolicy: IfNotPresent
+    tag: ""
+  nameOverride: ""
+  fullnameOverride: "nginx"
+
+  podAnnotations: {}
+
+  podSecurityContext: {}
+
+  securityContext: {}
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 31003
+
+  resources:
+    limit:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 300m
+      memory: 512Mi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+mongo:
+  username: admin
+  password: admin
+  service:
+    nodePort: 31001
